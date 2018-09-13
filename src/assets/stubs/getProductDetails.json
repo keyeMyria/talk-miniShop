@@ -1,0 +1,20 @@
+[{
+    "productId": 1,
+    "productName": "Fast Broadband",
+    "price": "19.00",
+    "totalPrice": "19.00",
+    "contractLength": "12",
+    "productSeller": "Talktalk",
+    "features": "Price fixed for contract length, Reliable Super Router, Unlimited internet usage",
+    "imageName": "broadband"
+},
+{
+    "productId": 2,
+    "productName": "Fibre Broadband",
+    "price": "20.00",
+    "totalPrice": "20.00",
+    "contractLength": "12",
+    "productSeller": "Talktalk",
+    "features": "Price fixed for contract length, Unlimited internet usage, A powerful Wi-Fi router",
+    "imageName": "fibre"
+}]

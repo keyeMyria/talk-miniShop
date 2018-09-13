@@ -1,0 +1,15 @@
+<div class="container text-center" style="padding: 10px">
+  <h4 class="text-center" *ngIf="!productDetails">Please select <a routerLink="/products">product</a> here.</h4>
+  <div *ngIf="productDetails !== undefined">
+    <h3>Thank you for your order</h3>
+    <h5 class="mt-3">Order details:</h5>
+    <div class="list-group-item d-inline-flex flex-column justify-content-between">
+      <h6 class="">{{productDetails.productName}}</h6>
+      <p>Product Seller: {{productDetails.productSeller}}</p>
+      <span class="text-muted ">{{productDetails.price}}</span>
+    </div>
+  </div>
+  <div *ngIf="productDetails !== undefined" class="mt-3">
+    <a class="btn-primary btn" routerLink="/products">Back to Products</a>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<div class="container" style="padding: 10px">
+  <h4 class="text-center" *ngIf="!productDetails">Please select <a routerLink="/products">product</a> here.</h4>
+  <ul class="list-group mb-3" *ngIf="productDetails">
+    <li class="list-group-item d-flex justify-content-between lh-condensed">
+      <div>
+        <img src="assets/images/{{productDetails.imageName}}.png" alt="{{productDetails.productName}}">
+      </div>
+      <div style="padding: 10px">
+        <h6 class=" my-0 ">{{productDetails.productName}}</h6>
+        <p>Product Seller: {{productDetails.productSeller}}</p>
+      </div>
+      <span class="text-muted ">{{productDetails.price}}</span>
+    </li>
+    <hr>
+    <li class="list-group-item d-flex justify-content-between ">
+      <span>Total</span>
+      <strong>{{productDetails.price}}</strong>
+    </li>
+  </ul>
+  <div class="float-left" *ngIf="productDetails !== undefined">
+    <button routerLink="/products" class="btn-secondary btn">Back</button>
+  </div>
+  <div class="float-right" *ngIf="productDetails !== undefined">
+    <button class="btn-primary btn" (click)="confirmProduct(productDetails)">Confirm</button>
+  </div>
+</div>
