@@ -44,7 +44,7 @@ class ProductCard {
                 h("div", null,
                     h("span", null,
                         h("strong", null,
-                            this.price,
+                        "£", this.price,
                             " a month"))),
                 h("p", null,
                     "for ",

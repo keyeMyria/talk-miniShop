@@ -9,12 +9,12 @@
         <h6 class=" my-0 ">{{productDetails.productName}}</h6>
         <p>Product Seller: {{productDetails.productSeller}}</p>
       </div>
-      <span class="text-muted ">{{productDetails.price}}</span>
+      <span class="text-muted ">£{{productDetails.price}}</span>
     </li>
     <hr>
     <li class="list-group-item d-flex justify-content-between ">
       <span>Total</span>
-      <strong>{{productDetails.price}}</strong>
+      <strong>£{{productDetails.price}}</strong>
     </li>
   </ul>
   <div class="float-left" *ngIf="productDetails !== undefined">
