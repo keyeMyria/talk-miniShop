@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -14,10 +15,16 @@ import { ProductDetailsService } from '../product-details/product-details.servic
 })
 export class ProductDetailsComponent implements OnInit {
   productDetails: object;
-  constructor(private productDetailsService: ProductDetailsService, private route: Router, private store: Store<AppState>) {}
+  constructor(private productDetailsService: ProductDetailsService, private route: Router, private store: Store<AppState>) { }
 
   ngOnInit() {
-    this.productDetailsService.getProductDetails().subscribe((data: Product) => this.productDetails = data);
+    this.productDetailsService.getProductDetails().subscribe((data: Product) => {
+      if (  environment.production) {
+        this.productDetails = this.productDetailsService.transformProductDetails(data);
+      } else {
+        this.productDetails = data;
+      }
+    });
   }
 
   goToBasket = function (product) {

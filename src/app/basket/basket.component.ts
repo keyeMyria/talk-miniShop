@@ -23,7 +23,6 @@ export class BasketComponent implements OnInit {
   }
 
   confirmProduct(productDetails) {
-    // this.store.dispatch(new productActions.SaveProductDetails(productDetails));
     this.route.navigate(['/confirm']);
   }
 
