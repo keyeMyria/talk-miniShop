@@ -1,35 +1,36 @@
-import { environment } from './../../environments/environment';
+import { ProductDetailsService } from 'src/app/product-details/product-details.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
-import { Product } from '../models/product-details.model';
-import { AppState } from './../app.state';
-import * as productActions from '../actions/product-details.action';
-import { ProductDetailsService } from '../product-details/product-details.service';
+import { ProductStore } from '../store/product.store';
+import { CartStore } from './../store/cart.store';
 
 
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
-  styleUrls: ['./product-details.component.scss']
+  styleUrls: ['./product-details.component.scss'],
+  providers: [ProductDetailsService]
 })
 export class ProductDetailsComponent implements OnInit {
-  productDetails: object;
-  constructor(private productDetailsService: ProductDetailsService, private route: Router, private store: Store<AppState>) { }
+  constructor(private cartStore: CartStore, private router: Router,
+    private productDetailsService: ProductDetailsService,
+    private productStore: ProductStore,
+  ) {
+  }
 
   ngOnInit() {
-    this.productDetailsService.getProductDetails().subscribe((data: Product) => {
-      if (  environment.production) {
-        this.productDetails = this.productDetailsService.transformProductDetails(data);
-      } else {
-        this.productDetails = data;
-      }
-    });
+    this.productStore.getProductDetails();
   }
 
   goToBasket = function (product) {
-    this.store.dispatch(new productActions.SaveProductDetails(product));
-    this.route.navigate(['/basket', product.productId]);
+    const { productName, price, contractLength, productSeller } = product;
+    const cartPayload = { productName, price, contractLength, productSeller };
+    cartPayload['productId'] = product.id;
+    this.productDetailsService.addOrUpdateProductToCart(cartPayload).subscribe((data) => {
+      delete data._id;
+      this.cartStore.refreshCart(data);
+      this.router.navigate(['/basket']);
+    });
   };
 
 }

@@ -1,6 +1,6 @@
 <div class="container">
   <div class="justify-content-center row">
-    <div class="col-3 mr-3 products" *ngFor="let product of productDetails">
+    <div class="col-3 mr-3 products" *ngFor="let product of productStore.productDetails">
       <product-card [productName]=product.productName [price]=product.price [contractLength]=product.contractLength [features]=product.features imageName="assets/images/{{product.imageName}}.png"></product-card>
       <button type="button" class="btn-primary btn" (click)="goToBasket(product)">Get Fibre</button>
     </div>

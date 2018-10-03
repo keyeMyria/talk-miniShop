@@ -1,22 +1,29 @@
+import { OrderStore } from './../store/order.store';
+import { ConfirmationService } from './confirmation.service';
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { AppState } from './../app.state';
-import { Product } from 'src/app/models/product-details.model';
 
 @Component({
   selector: 'app-confirmation',
   templateUrl: './confirmation.component.html',
-  styleUrls: ['./confirmation.component.scss']
+  styleUrls: ['./confirmation.component.scss'],
+  providers: [ConfirmationService]
 })
 export class ConfirmationComponent implements OnInit {
-  productDetails: any;
 
-  constructor(private store: Store<AppState>) {
-    store.select('product').subscribe((data: Product) => {
-      this.productDetails = data;
+  reviewOrder: any;
+  order: any;
+
+  constructor(private confirmationService: ConfirmationService, private orderStore: OrderStore) {
+  }
+
+  ngOnInit() {
+    this.confirmationService.getOrder().subscribe((response: any) => {
+      this.reviewOrder = response.data;
     });
   }
 
-  ngOnInit() { }
+  submit() {
+    this.orderStore.submitOrder();
+  }
 
 }

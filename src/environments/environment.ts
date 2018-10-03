@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  productUrl: `http://localhost:2000/get-products`,
+  cartUrl: `https://salespoc-azure-cart-api.azurewebsites.net/api/cart`,
+  userUrl: `https://salespoc-azure-user-api.azurewebsites.net/api/user`,
+  orderUrl: `https://salespoc-azure-order-api.azurewebsites.net/api/order`
 };
 
 /*

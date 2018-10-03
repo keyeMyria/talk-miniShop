@@ -1,3 +1,4 @@
+import { CartStore } from './../store/cart.store';
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -5,33 +6,17 @@ import { HttpClient } from '@angular/common/http';
 @Injectable()
 export class ProductDetailsService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private cartStore: CartStore) { }
 
-  getProductDetails() {
-    const url = environment.productUrl;
-    return this.http.get(url);
+
+  addOrUpdateProductToCart(cartPayload) {
+    const url = environment.cartUrl;
+    if (this.cartStore.cart && this.cartStore.cart.cartId) {
+      cartPayload.cartId = this.cartStore.cart.cartId;
+      return this.http.put(url, cartPayload);
+    }
+    return this.http.post(url, cartPayload);
   }
 
-  transformProductDetails(data) {
-    return data.reduce(function (products, obj, id, arr) {
-      if (products) {
-        const product: any = obj.$v;
-        products.push(
-          {
-            productName: product.productName.$v,
-            price: product.price.$v,
-            contractLength: product.contractLength.$v,
-            features: product.features.$v,
-            imageName: product.imageName.$v,
-            productId: product.id.$v,
-            productSeller: product.productSeller.$v
-          }
-        );
-      } else {
-        products = [];
-      }
-      return products;
-    }, []);
-  }
 
 }

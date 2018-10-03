@@ -1,15 +1,26 @@
 <div class="container text-center" style="padding: 10px">
-  <h4 class="text-center" *ngIf="!productDetails">Please select <a routerLink="/products">product</a> here.</h4>
-  <div *ngIf="productDetails !== undefined">
-    <h3>Thank you for your order</h3>
-    <h5 class="mt-3">Order details:</h5>
-    <div class="list-group-item d-inline-flex flex-column justify-content-between">
-      <h6 class="">{{productDetails.productName}}</h6>
-      <p>Product Seller: {{productDetails.productSeller}}</p>
-      <span class="text-muted ">£{{productDetails.price}}</span>
+  <div *ngIf="reviewOrder && reviewOrder.basket.cart !== undefined">
+    <div *ngIf="orderStore.order && orderStore.order.orderId">
+      <h3>Thank you for your order</h3>
+      <h4>Ordernumber : {{orderStore.order.orderId}}</h4>
+    </div>
+    <h5 class="mt-3">Order details</h5>
+    <div *ngIf="reviewOrder && reviewOrder.basket.cart" class="list-group-item d-inline-flex flex-column justify-content-between">
+      <h6 class="">{{reviewOrder.basket.cart.productName}}</h6>
+      <p>Product Seller: {{reviewOrder.basket.cart.productSeller}}</p>
+      <p>Contract duration: {{reviewOrder.basket.cart.contractLength}}</p>
+      <span class="text-muted ">£{{reviewOrder.basket.cart.price}}</span>
+      <h6 class="">User Details</h6>
+      <p>{{reviewOrder.user.title}}.{{reviewOrder.user.firstName}} {{reviewOrder.user.lastName}}</p>
+      <p>Email: {{reviewOrder.user.email}}</p>
+      <p>Phone Number: {{reviewOrder.user.phoneNumber}}</p>
+      <p>Date of Birth: {{reviewOrder.user.dob}}</p>
     </div>
   </div>
-  <div *ngIf="productDetails !== undefined" class="mt-3">
-    <a class="btn-primary btn" routerLink="/products">Back to Products</a>
+  <div class="mt-3" *ngIf="orderStore.order && orderStore.order.orderId">
+    <a class="btn-secondary btn" routerLink="/products">Back to Products</a>
+  </div>
+  <div class="mt-3" *ngIf="!(orderStore.order && orderStore.order.orderId)">
+    <a class="btn-primary btn" (click)="submit()">submit</a>
   </div>
 </div>

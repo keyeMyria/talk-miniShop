@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { Product } from 'src/app/models/product-details.model';
+import { Product } from '../models/product.model';
 import * as productActions from '../actions/product-details.action';
 
 export function productDetailsReducer(state: Product, action: productActions.Actions) {

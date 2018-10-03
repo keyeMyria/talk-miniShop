@@ -1,8 +1,7 @@
-export interface Product {
-    productId: number;
+export class Product {
+    id: string;
     productName: string;
     price: string;
-    totalPrice: string;
     contractLength: string;
     productSeller: string;
     features: string;

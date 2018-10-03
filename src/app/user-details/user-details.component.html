@@ -1,0 +1,75 @@
+<div class="container">
+  <div class="justify-content-center row">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Your personal details</h1>
+                <form [formGroup]="userDetailsForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group required">
+                        <label>Title</label>
+                            <select class="form-control col-md-4" formControlName="title" [ngClass]="{ 'is-invalid': submitted && f.title.errors }" >
+                                <option [value]="title" *ngFor="let title of titleList">{{title == '' ? '-Select' : title}}</option>
+                            </select>
+                            <div *ngIf="titleFocused && f.title.errors" class="invalid-feedback">
+                                <div *ngIf="f.title.errors.required">Please select your title</div>
+                            </div>
+                    </div>
+                    <div class="form-group required">
+                      <label>First Name</label>
+                      <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" (focus)="fNameFocused=false" (focusout)="fNameFocused=true"/>
+                      <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                          <div *ngIf="f.firstName.errors.required">Please enter you first name</div>
+                          <div *ngIf="f.firstName.errors.pattern">Please insert a valid first name</div>
+                      </div>
+                  </div>
+                  <div class="form-group required">
+                      <label>Last Name</label>
+                      <input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+                      <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                          <div *ngIf="f.lastName.errors.required">Please enter your last name</div>
+                          <div *ngIf="f.lastName.errors.pattern">Please insert a valid last name</div>
+                      </div>
+                  </div>
+                  <div class="form-group required">
+                      <label>Email</label>
+                      <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                      <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                          <div *ngIf="f.email.errors.required">Please enter your email</div>
+                          <div *ngIf="f.email.errors.pattern">Please insert a valid email</div>
+                      </div>
+                  </div>
+                  <div class="form-group required">
+                      <label>Mobile Number</label>
+                      <input type="text" formControlName="phoneNumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.phoneNumber.errors }" />
+                      <div *ngIf="submitted && f.phoneNumber.errors" class="invalid-feedback">
+                          <div *ngIf="f.phoneNumber.errors.required">Please enter your mobile number</div>
+                          <div *ngIf="f.phoneNumber.errors.pattern">Please insert a valid mobile number</div>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                    <label>Date Of Birth</label>
+                    <div class="row">
+                    <div class="col-md-4 rm-padding-right">
+                        <select class="form-control" formControlName="day">
+                            <option [value]="day" *ngFor="let day of dayList">{{day == '' ? '-Select' : day}}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 rm-padding-right">
+                        <select class="form-control" formControlName="month">
+                            <option [value]="month" *ngFor="let month of monthList">{{month == '' ? '-Select' : month}}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <select class="form-control" formControlName="year">
+                            <option [value]="year" *ngFor="let year of yearList">{{year == '' ? '-Select' : year}}</option>
+                        </select>
+                    </div>
+                  </div>
+                </div>
+                  <div class="form-group">
+                      <button class="btn btn-primary">Save</button>
+                  </div>
+
+              </form>
+        </div>
+    </div>
+</div>
