@@ -1,10 +1,10 @@
-import { CartStore } from './../store/cart.store';
-import { environment } from './../../environments/environment';
+import { CartStore } from '../../store/cart.store';
+import { environment } from '../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable()
-export class ProductDetailsService {
+export class ProductService {
 
   constructor(private http: HttpClient, private cartStore: CartStore) { }
 

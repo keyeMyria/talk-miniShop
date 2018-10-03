@@ -1,5 +1,5 @@
-import { CartStore } from './../store/cart.store';
-import { GET_BASKET } from './../graphql/graphql-config';
+import { CartStore } from './../../store/cart.store';
+import { GET_BASKET } from './../../graphql/graphql-config';
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 

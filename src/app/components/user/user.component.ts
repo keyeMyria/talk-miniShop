@@ -2,20 +2,20 @@ import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { Utils } from '../utils/utils';
-import { UserDetailsService } from './user-details.service';
-import { RegExEnum } from './../enum/regex.enum';
-import { User } from './../models/user.model';
-import { UserStore } from './../store/user.store';
+import { Utils } from '../../utils/utils';
+import { UserService } from './user.service';
+import { RegExEnum } from '../../enum/regex.enum';
+import { User } from '../../models/user.model';
+import { UserStore } from '../../store/user.store';
 
 @Component({
-  selector: 'app-user-details',
-  templateUrl: './user-details.component.html',
-  styleUrls: ['./user-details.component.scss'],
-  providers: [UserDetailsService]
+  selector: 'app-user',
+  templateUrl: './user.component.html',
+  styleUrls: ['./user.component.scss'],
+  providers: [UserService]
 })
 
-export class UserDetailsComponent implements OnInit {
+export class UserComponent implements OnInit {
 
   submitted = false;
   userDetailsForm: FormGroup;
@@ -33,7 +33,7 @@ export class UserDetailsComponent implements OnInit {
   monthList: Array<string> = Utils.getMonthList();
   titleList: Array<string> = Utils.getTitleList();
 
-  constructor(private formBuilder: FormBuilder, private userDetailsService: UserDetailsService,
+  constructor(private formBuilder: FormBuilder, private userDetailsService: UserService,
     private userStore: UserStore, private router: Router) { }
 
   ngOnInit() {
@@ -64,7 +64,7 @@ export class UserDetailsComponent implements OnInit {
     this.userDetailsService.addOrUpdateUser(user).subscribe((resp) => {
       delete resp['_id'];
       this.userStore.refreshUser(resp);
-      this.router.navigate(['/confirm']);
+      this.router.navigate(['/order']);
     });
   }
 

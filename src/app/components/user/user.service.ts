@@ -1,11 +1,11 @@
-import { User } from './../models/user.model';
-import { UserStore } from './../store/user.store';
-import { environment } from './../../environments/environment';
+import { User } from '../../models/user.model';
+import { UserStore } from '../../store/user.store';
+import { environment } from '../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable()
-export class UserDetailsService {
+export class UserService {
 
   constructor(private http: HttpClient, private userStore: UserStore
   ) { }

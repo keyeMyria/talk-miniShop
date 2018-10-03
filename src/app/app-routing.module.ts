@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { ProductDetailsComponent } from './product-details/product-details.component';
-import { BasketComponent } from './basket/basket.component';
-import { ConfirmationComponent } from './confirmation/confirmation.component';
-import { UserDetailsComponent } from './user-details/user-details.component';
+import { ProductComponent } from './components/product/product.component';
+import { BasketComponent } from './components/basket/basket.component';
+import { OrderComponent } from './components/order/order.component';
+import { UserComponent } from './components/user/user.component';
 
 
 const routes: Routes = [
-  { path: 'products', component: ProductDetailsComponent },
+  { path: 'products', component: ProductComponent },
   { path: 'basket', component: BasketComponent },
-  { path: 'confirm', component: ConfirmationComponent },
-  { path: 'userDetails', component: UserDetailsComponent },
+  { path: 'order', component: OrderComponent },
+  { path: 'userDetails', component: UserComponent },
   { path: '', redirectTo: '/products', pathMatch: 'full' }
 ];
 

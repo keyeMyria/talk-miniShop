@@ -1,7 +1,6 @@
 import { GET_PRODUCTS } from './../graphql/graphql-config';
 import { Apollo } from 'apollo-angular';
 import { Product } from '../models/product.model';
-import { environment } from '../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { observable, runInAction, action } from 'mobx';
