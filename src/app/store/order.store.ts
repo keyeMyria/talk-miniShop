@@ -27,7 +27,7 @@ export class OrderStore {
   @action submitOrder() {
     this.order = new Order();
     const url = environment.orderUrl;
-    const payload = { 'productId': this.cartStore.cart.cart.productId, 'userId': this.userStore.user.userId };
+    const payload = { 'productId': this.cartStore.cart.cart.productId, 'userId': this.userStore.userId };
     this.http.post(url, payload).subscribe((resp: any) => {
       runInAction(() => {
         this.order = resp;
