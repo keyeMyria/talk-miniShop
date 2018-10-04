@@ -9,20 +9,18 @@ import { observable, runInAction, action } from 'mobx';
 @Injectable()
 export class ProductStore {
 
-  @observable productDetails: Product[];
+  @observable products: Product[];
 
   constructor(private http: HttpClient, private apollo: Apollo) { }
 
 
   @action async getProductDetails() {
-    this.productDetails = [];
+    this.products = [];
     this.apollo.watchQuery({
       query: GET_PRODUCTS
     }).valueChanges.subscribe((response: any) => {
       runInAction(() => {
-        console.log(response);
-        console.log(response.data);
-        this.productDetails = response.data.products;
+        this.products = response.data.products;
       });
     });
   }

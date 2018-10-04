@@ -61,11 +61,7 @@ export class UserComponent implements OnInit {
       return;
     }
     const user: User = this.userDetailsService.generateUserPayload(this.userDetailsForm.controls);
-    this.userDetailsService.addOrUpdateUser(user).subscribe((resp) => {
-      delete resp['_id'];
-      this.userStore.refreshUser(resp);
-      this.router.navigate(['/order']);
-    });
+    this.userStore.saveUser(user);
   }
 
   // getter for easy access to form fields

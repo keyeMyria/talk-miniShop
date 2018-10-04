@@ -2,15 +2,17 @@ import gql from 'graphql-tag';
 
 export const GET_PRODUCTS = gql`
 {
-	products {
-      id
-      productName
-      price
-      contractLength
-      productSeller
-      features
+  products {
+    id
+    productName
+    price
+    contractLength
+    productSeller
+    cmsProduct {
+      features,
       imageName
     }
+  }
 }
 `;
 
@@ -25,8 +27,7 @@ query getBasket($cartId:String!){
       contractLength
       productSeller
     }
-    product {
-      productName
+    cmsProductForCart {
       features
       imageName
     }

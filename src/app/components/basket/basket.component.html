@@ -1,25 +1,25 @@
 <div class="container" style="padding: 10px">
-  <ul class="list-group mb-3" *ngIf="basket.cart">
+  <ul class="list-group mb-3" *ngIf="cartStore.cart">
     <li class="list-group-item d-flex justify-content-between lh-condensed">
       <div>
-        <img src="assets/images/{{basket.product.imageName}}.png" alt="{{basket.product.imageName}}">
+        <img src="assets/images/{{cartStore.cart.cmsProductForCart.imageName}}.png" alt="{{cartStore.cart.cmsProductForCart.imageName}}">
       </div>
       <div style="padding: 10px">
-        <h6 class=" my-0 ">{{basket.cart.productName}}</h6>
-        <p>Product Seller: {{basket.cart.productSeller}}</p>
+        <h6 class=" my-0 ">{{cartStore.cart.cart.productName}}</h6>
+        <p>Product Seller: {{cartStore.cart.cart.productSeller}}</p>
       </div>
-      <span class="text-muted ">£{{basket.cart.price}}</span>
+      <span class="text-muted ">£{{cartStore.cart.cart.price}}</span>
     </li>
     <hr>
     <li class="list-group-item d-flex justify-content-between ">
       <span>Total</span>
-      <strong>£{{basket.cart.price}}</strong>
+      <strong>£{{cartStore.cart.cart.price}}</strong>
     </li>
   </ul>
-  <div class="float-left" *ngIf="basket.cart !== undefined">
+  <div class="float-left" *ngIf="cartStore.cart !== undefined">
     <button routerLink="/products" class="btn-secondary btn">Back</button>
   </div>
-  <div class="float-right" *ngIf="basket.cart !== undefined">
+  <div class="float-right" *ngIf="cartStore.cart !== undefined">
     <button class="btn-primary btn" (click)="confirmProduct(productDetails)">Confirm</button>
   </div>
 </div>

@@ -1,4 +1,4 @@
-import { BasketService } from './basket.service';
+import { CartStore } from './../../store/cart.store';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -7,19 +7,15 @@ import { Router } from '@angular/router';
   selector: 'app-basket',
   templateUrl: './basket.component.html',
   styleUrls: ['./basket.component.scss'],
-  providers: [BasketService]
 })
 export class BasketComponent implements OnInit {
   basket: any = {};
 
-  constructor(private route: Router, private basketService: BasketService) {
+  constructor(private route: Router, private cartStore: CartStore) {
   }
 
   ngOnInit() {
-    this.basketService.getBasket().subscribe((response: any) => {
-      this.basket = response.data.basket;
-      console.log(this.basket);
-    });
+    this.cartStore.loadBasket();
   }
 
   confirmProduct(productDetails) {
